@@ -3,25 +3,17 @@ describe("Alta de varias tareas", ()  => {
 
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")
-    })
 
-    it('CP-02 - Agregar varias tareas', () => {
-
-        cy.fixture("tasks").then((data) => {
+        cy.fixture("todos").then((data) => {
             tasks = data.tasks
-
+    
             tasks.forEach((task) => {
                 cy.addTodo(task)
             })
         })
+    })
 
-        //Agregar cada tarea del array
-        tasks.forEach((task) => {
-            cy.get("#todo-input.new-todo")
-            .type(task)
-            .type("{enter}")
-        })
-
+    it('CP-02 - Agregar varias tareas', () => {
         //Validar cantidad de tareas
         cy.get(".todo-list li")
         .should("have.length", tasks.length)
