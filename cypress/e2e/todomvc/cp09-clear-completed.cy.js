@@ -3,10 +3,15 @@ describe('TodoMVC Clear completed', () => {
 
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")   
-        tasks.forEach((task) => {
-            cy.addTodo(task)
+
+        cy.fixture("todos").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
         })
-        //mark all filter
+
         cy.get(".filters").contains("All").click()
     })
 
@@ -43,7 +48,7 @@ describe('TodoMVC Clear completed', () => {
         })
     })
 
-    it.only('CP-09-03 - Clear completed with all tasks completed', () => {
+    it('CP-09-03 - Clear completed with all tasks completed', () => {
         // Mark all tasks as completed
         tasks.forEach((task) => {
             cy.contains(".todo-list li", task)

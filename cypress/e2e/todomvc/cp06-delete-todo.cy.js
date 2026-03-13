@@ -1,14 +1,18 @@
-let tasks = []
-
 describe("Delete todo", () => {
+    let tasks
+
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")
         
         // Create a task
-        tasks = ["Comprar tomates", "Comprar cebollas", "Comprar pimientos"]
-        tasks.forEach((task) => {
-            cy.addTodo(task)
+        cy.fixture("todos").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
         })
+
         cy.get(".filters").contains("All").click()
     })
 
@@ -24,14 +28,14 @@ describe("Delete todo", () => {
 
     it("CP-06-02 - Delete a specific todo item", () => {
         // Delete a specific task
-        cy.contains("Comprar cebollas")
+        cy.contains(`${tasks[1]}`)
         .parents("li")
         .find(".destroy")
         .click({ force: true })
         
         // Verify the specific task is deleted
         cy.get(".todo-list li").should("have.length", 2)
-        cy.get(".todo-list li").should("not.contain", "Comprar cebollas")
+        cy.get(".todo-list li").should("not.contain", `${tasks[1]}`)
     })
 
     it("CP-06-03 - Delete the last todo item", () => {

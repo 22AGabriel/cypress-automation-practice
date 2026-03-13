@@ -1,10 +1,15 @@
 describe('todoMVC Edit todo', () => { 
-    let tasks = ["Comprar tomates", "Comprar cebollas", "Comprar pimientos"]
+    let tasks
 
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")   
-        tasks.forEach((task) => {
-            cy.addTodo(task)
+
+        cy.fixture("todos").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
         })
     })
 
@@ -22,7 +27,7 @@ describe('todoMVC Edit todo', () => {
         cy.contains(".todo-list li", "Comprar zanahorias")
     })
 
-    it.only('CP-08-02 - Edit a todo item and cancel', () => {
+    it('CP-08-02 - Edit a todo item and cancel', () => {
         // Edit the third task
         cy.contains(".todo-list li", tasks[2])
         .dblclick()

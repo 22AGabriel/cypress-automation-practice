@@ -1,21 +1,27 @@
 describe(("Marcar tareas como no completadas"),  () => {
+    let tasks 
+
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")
+
+        cy.fixture("todos").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
+        })
+
+        cy.get(".filters").contains("All").click()
     })
     
-    it('CP-05-01 - Marcar una tarea como no completada', () => {
-        
-        // Crear tarea
-        const task = "Comprar tomates"
-        cy.addTodo(task)
-        
+    it('CP-05-01 - Marcar una tarea como no completada', () => {        
         // Marcar como completada
-        cy.get(".filters").contains("All").click()
         cy.get(".toggle")
         .check()   
 
         // Verificar que la tarea esté marcada como completada
-        cy.contains(".todo-list li", task)
+        cy.contains(".todo-list li", tasks[0])
         .should("have.class", "completed")
         
         // Marcar como no completada
@@ -23,18 +29,11 @@ describe(("Marcar tareas como no completadas"),  () => {
         .uncheck()  
 
         // Verificar que la tarea esté marcada como no completada
-        cy.contains(".todo-list li", task)
+        cy.contains(".todo-list li", tasks[0])
         .should("not.have.class", "completed")
     })
 
     it("CP-05-02 - Marcar una tarea que no es el primer item como no completada", () => {
-        // Crear tareas 
-        const tasks = ["Comprar tomates", "Comprar cebollas", "Comprar pimientos"]
-        tasks.forEach((task) => {
-            cy.addTodo(task)
-        })
-        cy.get(".filters").contains("All").click()
-
         // Marcar la segunda tarea como completada
         cy.get(".todo-list li")
         .eq(1)
@@ -59,12 +58,6 @@ describe(("Marcar tareas como no completadas"),  () => {
     })
 
     it(("CP-05-03 - Marcar todas las tareas como no completadas"),() => {
-        // Crear tareas 
-        const tasks = ["Comprar tomates", "Comprar cebollas", "Comprar pimientos"]
-        tasks.forEach((task) => {
-            cy.addTodo(task)
-        })
-        cy.get(".filters").contains("All").click()
 
         cy.get(".toggle-all-container input").click()
 

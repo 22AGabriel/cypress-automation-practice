@@ -1,11 +1,15 @@
 describe('TodoMVC filters', () => { 
-    let tasks = []
+    let tasks
 
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")   
-        tasks = ["Comprar tomates", "Comprar cebollas", "Comprar pimientos"]
-        tasks.forEach((task) => {
-            cy.addTodo(task)
+
+        cy.fixture("todos").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
         })
     })
 

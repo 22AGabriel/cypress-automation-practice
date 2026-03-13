@@ -1,15 +1,19 @@
 describe("Alta de varias tareas", ()  => {
+    let tasks
 
     beforeEach(() => {
         cy.visit("https://todomvc.com/examples/react/dist/#/active")
     })
 
     it('CP-02 - Agregar varias tareas', () => {
-        const tasks = [
-            "Comprar tomates",
-            "Lavar el auto",
-            "Pagar servicios"
-        ]
+
+        cy.fixture("tasks").then((data) => {
+            tasks = data.tasks
+
+            tasks.forEach((task) => {
+                cy.addTodo(task)
+            })
+        })
 
         //Agregar cada tarea del array
         tasks.forEach((task) => {
