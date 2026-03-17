@@ -1,7 +1,7 @@
-describe('CP03 - POST create todo', () => {
+const endpoint = 'https://jsonplaceholder.typicode.com/todos'
 
+describe('CP03 - POST create todo', () => {
     it('should create a new todo and return the created object', () => {
-        const endpoint = 'https://jsonplaceholder.typicode.com/todos'
 
         const newTodo = {
             userId: 1,
@@ -42,5 +42,22 @@ describe('CP03 - POST create todo', () => {
             expect(response.body.id).to.be.greaterThan(0)
         })
     })
+})
 
+describe('CP03 - POST negative scenarios', () => {
+    it('should still create todo even if userId is missing (API limitation)', () => {
+        cy.request({
+            method:'POST',
+            url: endpoint,
+            body: {
+                title: 'Todo without userId',
+                completed: false
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(201)
+
+            // Validate that userIs is missing but todo is still created
+            expect(response.body.userId).to.be.undefined
+        })
+    })
 })
