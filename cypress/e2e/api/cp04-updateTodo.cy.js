@@ -1,8 +1,9 @@
+const endpoint = `https://jsonplaceholder.typicode.com/todos`
+
 describe('CP04 - PUT update todo', () => {
 
     it('should update a todo and return the updated object', () => {
         const todoId = 1
-        const endpoint = `https://jsonplaceholder.typicode.com/todos/${todoId}`
 
         const updatedTodo = {
             id: todoId,
@@ -13,7 +14,7 @@ describe('CP04 - PUT update todo', () => {
 
         cy.request({
             method: 'PUT',
-            url: endpoint,
+            url: `${endpoint}/${todoId}`,
             body: updatedTodo
         })
         .then((response) => {
@@ -38,6 +39,27 @@ describe('CP04 - PUT update todo', () => {
             expect(response.body.id).to.be.a('number')
             expect(response.body.title).to.be.a('string')
             expect(response.body.completed).to.be.a('boolean')
+        })
+    })
+})
+
+describe('CP04 - PUT negative scenarios', () => {
+    it('should handle update with invalid IDs', () => {
+        const invalidId = [9999, 'abc', -1]
+
+        invalidId.forEach((id) => {
+            cy.request({
+                method: 'PUT',
+                url: `${endpoint}/${id}`,
+                failOnStatusCode: false,
+                body: {
+                    userId: 1,
+                    title: 'This should not work',
+                    completed: false
+                }
+            }).then((response) => {
+                expect(response.status).to.eq(500) // JSONPlaceholder returns 500 for invalid PUT requests
+            })
         })
     })
 })
