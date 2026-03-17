@@ -1,9 +1,10 @@
+const endpoint = 'https://jsonplaceholder.typicode.com/todos'
+
 describe('CP02 - GET todo by ID', () => {
     it('should return the correct todo when requesting by ID', () => {
         const todoId = 1
-        const endpoint = `https://jsonplaceholder.typicode.com/todos/${todoId}`
 
-        cy.request('GET', endpoint)
+        cy.request('GET', `${endpoint}/${todoId}`)
         .then((response) => {
             //Status code should be 200
             expect(response.status).to.eq(200)
@@ -25,6 +26,24 @@ describe('CP02 - GET todo by ID', () => {
             expect(response.body.id).to.be.a('number')
             expect(response.body.title).to.be.a('string')
             expect(response.body.completed).to.be.a('boolean')
+        })
+    })
+})
+
+describe('CP02 - GET todo by ID negative scenarios', () => {
+    it('should return 404 when todo does not exist', () => { 
+        const invalidId = [9999, 'abc', -1]
+
+        invalidId.forEach((id) => {
+            cy.request({
+            method: 'GET',
+            url: `${endpoint}/${id}`,
+            failOnStatusCode: false
+            }).then((response) => {
+            expect(response.status).to.eq(404)
+
+            expect(response.body).to.be.deep.equal({})
+            })
         })
     })
 })
