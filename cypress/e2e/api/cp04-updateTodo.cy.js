@@ -1,4 +1,4 @@
-const endpoint = `https://jsonplaceholder.typicode.com/todos`
+import { ENDPOINTS, DEFAULT_TODO } from '../../support/constants'
 
 describe('CP04 - PUT update todo', () => {
 
@@ -14,7 +14,7 @@ describe('CP04 - PUT update todo', () => {
 
         cy.request({
             method: 'PUT',
-            url: `${endpoint}/${todoId}`,
+            url: `${ENDPOINTS.TODOS}/${todoId}`,
             body: updatedTodo
         })
         .then((response) => {
@@ -50,13 +50,9 @@ describe('CP04 - PUT negative scenarios', () => {
         invalidId.forEach((id) => {
             cy.request({
                 method: 'PUT',
-                url: `${endpoint}/${id}`,
+                url: `${ENDPOINTS.TODOS}/${id}`,
                 failOnStatusCode: false,
-                body: {
-                    userId: 1,
-                    title: 'This should not work',
-                    completed: false
-                }
+                body: DEFAULT_TODO
             }).then((response) => {
                 expect(response.status).to.eq(500) // JSONPlaceholder returns 500 for invalid PUT requests
             })

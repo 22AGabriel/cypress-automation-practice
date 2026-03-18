@@ -4,7 +4,7 @@ module.exports = defineConfig({
   allowCypressEnv: false,
 
   e2e: {
-    baseUrl: "https://thesimpsonsapi.com/",
+    baseUrl: "https://jsonplaceholder.typicode.com/",
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

@@ -1,12 +1,13 @@
+import { ENDPOINTS } from '../../support/constants'
+
 describe('CP05 - DELETE todo', () => {
 
     it('should delete a todo and return an empty object', () => {
         const todoId = 1
-        const endpoint = `https://jsonplaceholder.typicode.com/todos/${todoId}`
 
         cy.request({
             method: 'DELETE',
-            url: endpoint
+            url: `${ENDPOINTS.TODOS}/${todoId}`
         })
         .then((response) => {
             // Status code should be 200

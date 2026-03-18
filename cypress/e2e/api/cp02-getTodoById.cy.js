@@ -1,31 +1,22 @@
-const endpoint = 'https://jsonplaceholder.typicode.com/todos'
+import { ENDPOINTS } from '../../support/constants'
 
 describe('CP02 - GET todo by ID', () => {
     it('should return the correct todo when requesting by ID', () => {
         const todoId = 1
 
-        cy.request('GET', `${endpoint}/${todoId}`)
+        cy.request('GET', `${ENDPOINTS.TODOS}/${todoId}`)
         .then((response) => {
             //Status code should be 200
             expect(response.status).to.eq(200)
 
             //Response body should be and object
             expect(response.body).to.be.an('object')
-
-            //Validate structure
-            expect(response.body).to.have.property('userId')
-            expect(response.body).to.have.property('id')
-            expect(response.body).to.have.property('title')
-            expect(response.body).to.have.property('completed')
-
+          
             //Validate returned id
             expect(response.body.id).to.eq(todoId)
 
-            //Validate data types
-            expect(response.body.userId).to.be.a('number')
-            expect(response.body.id).to.be.a('number')
-            expect(response.body.title).to.be.a('string')
-            expect(response.body.completed).to.be.a('boolean')
+            //Validate structure and data types
+            cy.validateTodoSchema(response.body)
         })
     })
 })
@@ -37,7 +28,7 @@ describe('CP02 - GET todo by ID negative scenarios', () => {
         invalidId.forEach((id) => {
             cy.request({
             method: 'GET',
-            url: `${endpoint}/${id}`,
+            url: `${ENDPOINTS.TODOS}/${id}`,
             failOnStatusCode: false
             }).then((response) => {
             expect(response.status).to.eq(404)

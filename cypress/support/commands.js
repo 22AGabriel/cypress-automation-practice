@@ -24,8 +24,23 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+
+// Custom command to add a new todo via the UI
 Cypress.Commands.add('addTodo', (task) => {
     cy.get("#todo-input.new-todo")
     .type(task)
     .type("{enter}")
+})
+
+// Custom commands for API testing
+Cypress.Commands.add('validateTodoSchema', (body) => {
+    expect(body).to.have.property('userId')
+    expect(body).to.have.property('id')
+    expect(body).to.have.property('title')
+    expect(body).to.have.property('completed')
+
+    expect(body.userId).to.be.a('number')
+    expect(body.id).to.be.a('number')
+    expect(body.title).to.be.a('string')
+    expect(body.completed).to.be.a('boolean')
 })
