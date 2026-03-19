@@ -1,5 +1,5 @@
 # Cypress Testing Project (API + UI)
-This project contains automated test built with Cypress, covering both API and UI testing scenarios. It demonstrates validation of CRUD operations, user interactions and error handeling using real-worl application.
+This project contains automated tests built with Cypress, covering both API and UI testing scenarios. It demonstrates validation of CRUD operations, user interactions and error handling using real-world application.
 
 ---
 
@@ -7,7 +7,7 @@ This project contains automated test built with Cypress, covering both API and U
 
 - **Cypress**
 - **JavaScript**
-- **Mochawesome Reporter**
+- **Cypress-Mochawesome Reporter**
  
 ---
 
@@ -44,7 +44,7 @@ This project contains automated test built with Cypress, covering both API and U
 
 ### 🛠️ Installation
 
-npm install
+```npm install```
 
 ---
 
@@ -64,13 +64,27 @@ Run all tests (headless mode):
 
 This project uses Mochawesome for generating test reports. After running the tests, open: 
 
-`cypress/reports/index.html`
+### 🔍 Report Overview
+![Report Overview](./docs/report-overview.png)
+
+### 🔍 Report Overview Details
+![Report OverviewDetails](./docs/report-overview-detail.png)
+
+### ❌ API Failure Example
+![API Failure](./docs/api-failure-detail.png)
+
+### ❌ UI Failure Example
+![UI Failure](./docs/ui-failure-detail.png)
+
+These reports provide insights into test execution, including passed/failed tests, error messages, and screenshots for failed cases.
+
+Failing tests cases were intentionally created to demonstrate the reporting capabilities and to validate error handling in both API and UI tests.
 
 ---
 
 ### 🧠 Testing Approach
 
-Test were designed following QA best practices:
+Tests were designed following QA best practices:
 
 - Clear and independent test cases
 - Validation of both happy and edge cases
@@ -81,7 +95,7 @@ Test were designed following QA best practices:
 
 ### 📈 Future Improvements
 
-- CI/CD integration
+- CI/CD integration using GitHub Actions
 - Environment configuration
 - Cross-browser testing
 - Integration with performance testing tools (e.g. Apache JMeter)
