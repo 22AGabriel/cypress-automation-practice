@@ -4,7 +4,6 @@ module.exports = defineConfig({
   allowCypressEnv: false,
 
   video: true,
-  videoUploadOnPasses: false,
   screenshotOnRunFailure: true,
 
   reporter: "cypress-mochawesome-reporter",

@@ -1,4 +1,4 @@
-import { ENDPOINTS, DEFAULT_TODO } from '../../support/constants'
+import { ENDPOINTS, DEFAULT_TODO } from '../../../support/constants'
 
 describe('CP04 - PUT update todo', () => {
 

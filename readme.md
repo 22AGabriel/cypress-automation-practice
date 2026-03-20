@@ -58,6 +58,12 @@ Run all tests (headless mode):
 
 ```npx cypress run```
 
+Run API or UI tests only:
+
+API: ```npm run test:api```
+
+UI: ```npm run test:ui```
+
 ---
 
 ### 📊 Test Reports

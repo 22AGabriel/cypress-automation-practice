@@ -1,4 +1,4 @@
-import { ENDPOINTS } from '../../support/constants'
+import { ENDPOINTS } from '../../../support/constants'
 
 describe('CP02 - GET todo by ID', () => {
     it('should return the correct todo when requesting by ID', () => {

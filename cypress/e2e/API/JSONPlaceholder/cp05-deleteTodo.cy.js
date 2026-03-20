@@ -1,4 +1,4 @@
-import { ENDPOINTS } from '../../support/constants'
+import { ENDPOINTS } from '../../../support/constants'
 
 describe('CP05 - DELETE todo', () => {
 
