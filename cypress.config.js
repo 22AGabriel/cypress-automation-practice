@@ -12,7 +12,10 @@ module.exports = defineConfig({
     charts: true,
     reportPageTitle: 'Test Report',
     embeddedScreenshots: true,
-    inlineAssets: true
+    inlineAssets: true,
+    overwrite: false,
+    html: false,
+    json: true
   },
 
   e2e: {

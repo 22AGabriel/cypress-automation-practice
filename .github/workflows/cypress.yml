@@ -26,6 +26,12 @@ jobs:
       - name: Run UI tests
         run: npm run test:ui
 
+      - name: Merge reports
+        run: npm run merge-reports
+
+      - name: Generate final report
+        run: npm run generate-report
+
       - name: Upload Mochawesome report
         uses: actions/upload-artifact@v4
         with:
