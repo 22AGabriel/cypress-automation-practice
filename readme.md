@@ -1,5 +1,8 @@
+![Cypress Tests](https://github.com/22AGabriel/cypress-automation-practice/actions/workflows/cypress.yml/badge.svg)
+
 # Cypress Testing Project (API + UI)
-This project contains automated tests built with Cypress, covering both API and UI testing scenarios. It demonstrates validation of CRUD operations, user interactions and error handling using real-world application.
+This project contains automated tests built with Cypress, covering both API and UI testing scenarios.
+It demonstrates validation of CRUD operations, user interactions, and error handling using real-world applications, following QA best practices and CI/CD integration.
 
 ---
 
@@ -8,6 +11,7 @@ This project contains automated tests built with Cypress, covering both API and 
 - **Cypress**
 - **JavaScript**
 - **Cypress-Mochawesome Reporter**
+- **GitHub Actions (CI/CD)**
  
 ---
 
@@ -38,7 +42,21 @@ This project contains automated tests built with Cypress, covering both API and 
 - UI Testing (user flows)
 - Positive and negative test cases
 - Reusable commands and fixtures
-- Mochawesome reporting
+- Automated test reporting
+- CI/CD pipeline integration
+
+---
+
+### ⚙️ CI/CD Pipeline
+
+This project includes a CI pipeline built with GitHub Actions that:
+
+- Runs API and UI tests automatically on every push to main
+- Executes all tests in a single Cypress run to generate a unified report
+- Generates test reports using Mochawesome
+- Uploads reports as downloadable artifacts
+
+This ensures continuous validation of the application and visibility of test results.
 
 ---
 
@@ -64,11 +82,24 @@ API: ```npm run test:api```
 
 UI: ```npm run test:ui```
 
+Run tests for CI (API + UI together):
+
+```npm run test:ci```
+
 ---
 
 ### 📊 Test Reports
 
-This project uses Mochawesome for generating test reports. After running the tests, open: 
+This project uses Mochawesome for generating test reports. 
+
+Reports are automatically generated during CI execution and can be downloaded from GitHub Actions as artifacts.
+
+Each report includes:
+
+- Test execution summary
+- Passed and failed test cases
+- Error details
+- Screenshots of failures (when applicable)
 
 ### 🔍 Report Overview
 ![Report Overview](./docs/report-overview.png)
@@ -81,8 +112,6 @@ This project uses Mochawesome for generating test reports. After running the tes
 
 ### ❌ UI Failure Example
 ![UI Failure](./docs/ui-failure-detail.png)
-
-These reports provide insights into test execution, including passed/failed tests, error messages, and screenshots for failed cases.
 
 Failing tests cases were intentionally created to demonstrate the reporting capabilities and to validate error handling in both API and UI tests.
 
@@ -101,7 +130,6 @@ Tests were designed following QA best practices:
 
 ### 📈 Future Improvements
 
-- CI/CD integration using GitHub Actions
 - Environment configuration
 - Cross-browser testing
 - Integration with performance testing tools (e.g. Apache JMeter)
