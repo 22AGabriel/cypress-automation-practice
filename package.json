@@ -7,8 +7,9 @@
     "test": "npx cypress open",
     "test:api": "cypress run --spec 'cypress/e2e/API/**/*'",
     "test:ui": "cypress run --spec 'cypress/e2e/UI/**/*'",
-    "merge-reports": "mochawesome-merge cypress/reports/mochawesome/*.json > cypress/reports/mochawesome/merged.json",
-    "generate-report": "marge cypress/reports/mochawesome/merged.json --reportDir cypress/reports/mochawesome"
+    "merge-reports": "npx mochawesome-merge \"cypress/reports/mochawesome/*.json\" -o cypress/reports/mochawesome/merged.json",
+    "generate-report": "marge cypress/reports/mochawesome/merged.json --reportDir cypress/reports/mochawesome",
+    "clean-reports": "rm -rf cypress/reports/mochawesome/*"
   },
   "keywords": [],
   "author": "",

@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Clean reports
+        run: npm run clean-reports
+
       - name: Run API tests
         run: npm run test:api
 
