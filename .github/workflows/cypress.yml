@@ -20,20 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Clean reports
-        run: npm run clean-reports
-
-      - name: Run API tests
-        run: npm run test:api
-
-      - name: Run UI tests
-        run: npm run test:ui
-
-      - name: Merge reports
-        run: npm run merge-reports
-
-      - name: Generate final report
-        run: npm run generate-report
+      - name: Run Cypress tests (API + UI)
+        run: npm run test:ci
 
       - name: Upload Mochawesome report
         uses: actions/upload-artifact@v4
