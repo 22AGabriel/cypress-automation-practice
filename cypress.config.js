@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   allowCypressEnv: false,
 
-  video: true,
+  video: false,
   screenshotOnRunFailure: true,
 
   reporter: "cypress-mochawesome-reporter",
