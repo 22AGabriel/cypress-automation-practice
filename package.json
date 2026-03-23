@@ -7,7 +7,8 @@
     "test": "npx cypress open",
     "test:api": "cypress run --spec 'cypress/e2e/API/**/*'",
     "test:ui": "cypress run --spec 'cypress/e2e/UI/**/*'",
-    "test:ci": "cypress run --spec \"cypress/e2e/API/**/*,cypress/e2e/UI/**/*\""
+    "test:ci": "cypress run --spec \"cypress/e2e/API/**/*,cypress/e2e/UI/**/*\"",
+    "test:ci:full": "cypress run --spec \"cypress/e2e/**/*\""
   },
   "keywords": [],
   "author": "",
