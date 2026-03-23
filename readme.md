@@ -49,14 +49,38 @@ It demonstrates validation of CRUD operations, user interactions, and error hand
 
 ### ⚙️ CI/CD Pipeline
 
-This project includes a CI pipeline built with GitHub Actions that:
+This project includes a CI pipeline built with GitHub Actions following a Shift-Left Testing approach to ensure early detection of defects.
 
-- Runs API and UI tests automatically on every push to main
-- Executes all tests in a single Cypress run to generate a unified report
-- Generates test reports using Mochawesome
-- Uploads reports as downloadable artifacts
+#### 🔁 Pipeline Behavior
 
-This ensures continuous validation of the application and visibility of test results.
+- Tests run automatically on every Pull Request to `main`
+- Tests also run after merging changes into `main`
+- API and UI tests are executed in a single Cypress run to generate a unified report
+
+#### 🔒 Quality Gates
+
+Branch protection rules are configured to enforce quality:
+
+- Pull Requests are required before merging into `main`
+- All automated tests must pass before merge is allowed
+- Merges are blocked if any test fails
+ 
+#### 🧪 Test Execution Strategy
+
+- **Stable**: Runs only validated API and UI tests (`test:ci`)
+- **Full**: Runs all tests, including experimental/failing scenarios (`test:ci:full`)
+
+This allows:
+- Reliable validation in CI pipelines
+- Flexible execution for testing and demonstration purposes
+ 
+#### 📊 Reporting
+
+- Test reports are generated using Mochawesome
+- Reports are uploaded as artifacts in GitHub Actions
+- Include execution summary, failures, and screenshots
+
+This setup ensures continuous validation, early feedback, and controlled code integration.
 
 ---
 
