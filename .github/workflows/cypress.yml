@@ -26,11 +26,11 @@ jobs:
         run: npm ci
 
       - name: Run Cypress tests (stable)
-        if: env.TEST_SCOPE == "stable"
+        if: env.TEST_SCOPE == 'stable'
         run: npm run test:ci
 
       - name: Run Cypress tests (full)
-        if: env.TEST_SCOPE == "full"
+        if: env.TEST_SCOPE == 'full'
         run: npm run test:ci:full
 
       - name: Upload Mochawesome report
