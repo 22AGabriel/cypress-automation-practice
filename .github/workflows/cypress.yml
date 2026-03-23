@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TEST_SCOPE: stable
+      TEST_SCOPE: full
 
     steps:
       - name: Checkout repo
