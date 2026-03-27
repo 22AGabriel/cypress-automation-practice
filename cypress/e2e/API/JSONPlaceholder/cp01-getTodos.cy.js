@@ -1,5 +1,3 @@
-import { ENDPOINTS } from '../../../support/constants'
-
 describe('CP01 - GET todos', () => {
 
     it('should return a valid list of todos', () => {

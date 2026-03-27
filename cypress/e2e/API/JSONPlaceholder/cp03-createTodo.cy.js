@@ -1,5 +1,3 @@
-import { ENDPOINTS } from '../../../support/constants'
-
 describe('CP03 - POST create todo', () => {
     it('should create a new todo and return the created object', () => {
 
