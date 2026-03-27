@@ -4,7 +4,7 @@ describe('CP01 - GET todos', () => {
 
     it('should return a valid list of todos', () => {
 
-        cy.request('GET', ENDPOINTS.TODOS)
+        cy.getTodos()
         .then((response) => {
             //Status code should be 200
             expect(response.status).to.eq(200)

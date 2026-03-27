@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import { ENDPOINTS } from "./constants"
+
 
 // Custom command to add a new todo via the UI
 Cypress.Commands.add('addTodo', (task) => {
@@ -33,6 +35,21 @@ Cypress.Commands.add('addTodo', (task) => {
 })
 
 // Custom commands for API testing
+Cypress.Commands.add('getTodos', () => {
+    return cy.request({
+        method: 'GET',
+        url: ENDPOINTS.TODOS
+    })
+})
+
+Cypress.Commands.add('createTodos', (body) => {
+    return cy.request({
+        method: 'POST',
+        url: ENDPOINTS.TODOS,
+        body
+    })
+})
+
 Cypress.Commands.add('validateTodoSchema', (body) => {
     expect(body).to.have.property('userId')
     expect(body).to.have.property('id')

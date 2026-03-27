@@ -9,11 +9,12 @@ describe('CP03 - POST create todo', () => {
             completed: false
         }
 
-        cy.request({
-            method: 'POST',
-            url: ENDPOINTS.TODOS,
-            body: newTodo
-        })
+        // cy.request({
+        //     method: 'POST',
+        //     url: ENDPOINTS.TODOS,
+        //     body: newTodo
+        // })
+        cy.createTodos(newTodo)
         .then((response) => {
             // Status code should be 201
             expect(response.status).to.eq(201)
@@ -37,14 +38,19 @@ describe('CP03 - POST create todo', () => {
 
 describe('CP03 - POST negative scenarios', () => {
     it('should still create todo even if userId is missing (API limitation)', () => {
-        cy.request({
-            method:'POST',
-            url: ENDPOINTS.TODOS,
-            body: {
-                title: 'Todo without userId',
-                completed: false
-            }
-        }).then((response) => {
+        // cy.request({
+        //     method:'POST',
+        //     url: ENDPOINTS.TODOS,
+        //     body: {
+        //         title: 'Todo without userId',
+        //         completed: false
+        //     }
+        // })
+        cy.createTodos({
+            title: 'Todo without userId',
+            completed: false
+        })
+        .then((response) => {
             expect(response.status).to.eq(201)
 
             // Validate that userIs is missing but todo is still created
