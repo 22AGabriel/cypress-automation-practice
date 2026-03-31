@@ -42,6 +42,14 @@ Cypress.Commands.add('getTodos', () => {
     })
 })
 
+Cypress.Commands.add('getTodoById', (id, failOnStatusCode = true) => {
+  return cy.request({
+    method: 'GET',
+    url: `${ENDPOINTS.TODOS}/${id}`,
+    failOnStatusCode
+  })
+})
+
 Cypress.Commands.add('createTodos', (body) => {
     return cy.request({
         method: 'POST',
